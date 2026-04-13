@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sara Haddou Amar, PhD — Industrial & Systems Engineering</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+
+/* ─────────────────────────────────────────
+   BRAND FAMILY LOGIC
+   AGORA Lab:    dark terracotta, structured, institutional
+   This site:   warm sand, editorial, personal — same DNA, lighter register
+   Shared:      Cormorant Garamond + DM Sans, terracotta accent, ascending bars motif
+   Distinct:    cream/sand background, first-person voice, portrait-led
+───────────────────────────────────────── */
+
+:root {
+  --sand:      #FAF5EF;
+  --sand-2:    #F2E8DC;
+  --sand-3:    #E8D8C4;
+  --terra:     #8B5E3C;
+  --terra-mid: #C4956A;
+  --terra-dk:  #1A120A;
+  --terra-deep:#3D1F0A;
+  --green:     #2C4A3E;
+  --green-mid: #6B9E8A;
+  --text:      #2A1A0E;
+  --text-2:    #6B4A2E;
+  --text-3:    #A07850;
+  --border:    rgba(139,94,60,0.12);
+  --border-2:  rgba(139,94,60,0.22);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  background: var(--sand);
+  color: var(--text);
+  line-height: 1.65;
+  overflow-x: hidden;
+}
+
+/* ─── NAV ─── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(250,245,239,0.96);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border-2);
+  display: flex; align-items: center;
+  padding: 0 2.5rem; height: 58px;
+}
+.nav-mark {
+  display: flex; align-items: flex-end; gap: 3px;
+  height: 18px; margin-right: auto; text-decoration: none;
+  opacity: 0.6; transition: opacity 0.2s;
+}
+.nav-mark:hover { opacity: 1; }
+.nav-mark span { width: 3px; border-radius: 1px; background: var(--terra); }
+.nav-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 15px; color: var(--text);
+  letter-spacing: 0.04em; margin-left: 10px;
+  text-decoration: none;
+}
+.nav-links { display: flex; gap: 0; }
+.nav-link {
+  font-size: 12px; color: var(--text-2);
+  padding: 0 14px; height: 58px;
+  display: flex; align-items: center;
+  text-decoration: none; letter-spacing: 0.03em;
+  border-bottom: 2px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
+}
+.nav-link:hover { color: var(--terra); border-bottom-color: var(--terra-mid); }
+.nav-cta {
+  font-size: 12px; font-weight: 500;
+  color: var(--terra); background: transparent;
+  padding: 7px 16px; border-radius: 3px;
+  border: 1px solid var(--terra-mid);
+  text-decoration: none; margin-left: 8px;
+  align-self: center; letter-spacing: 0.03em;
+  transition: background 0.2s, color 0.2s;
+}
+.nav-cta:hover { background: var(--terra); color: white; }
+
+/* ─── HERO / PORTRAIT ─── */
+.hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding-top: 58px;
+}
+.hero-left {
+  background: var(--terra-dk);
+  display: flex; flex-direction: column;
+  justify-content: flex-end;
+  padding: 4rem 3.5rem 4.5rem;
+  position: relative; overflow: hidden;
+}
+.hero-bg-lines {
+  position: absolute; inset: 0; pointer-events: none;
+  background-image:
+    repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(196,149,106,0.04) 60px, rgba(196,149,106,0.04) 61px);
+}
+.hero-eyebrow {
+  font-size: 10px; text-transform: uppercase;
+  letter-spacing: 0.16em; color: var(--terra-mid);
+  margin-bottom: 1.5rem; position: relative; z-index: 1;
+  animation: fadeUp 0.7s ease both;
+}
+.hero-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.4rem, 4vw, 4rem);
+  font-weight: 300; line-height: 1.1;
+  color: #FAF0E6; letter-spacing: -0.02em;
+  margin-bottom: 0.5rem; position: relative; z-index: 1;
+  animation: fadeUp 0.7s 0.08s ease both;
+}
+.hero-name em { font-style: italic; color: var(--terra-mid); }
+.hero-title {
+  font-size: 13px; color: rgba(196,149,106,0.65);
+  letter-spacing: 0.04em; margin-bottom: 2rem;
+  position: relative; z-index: 1;
+  animation: fadeUp 0.7s 0.16s ease both;
+}
+.hero-statement {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.25rem; font-style: italic;
+  color: rgba(250,240,230,0.7); line-height: 1.65;
+  max-width: 420px; position: relative; z-index: 1;
+  border-left: 2px solid rgba(196,149,106,0.3);
+  padding-left: 1.25rem; margin-bottom: 2.5rem;
+  animation: fadeUp 0.7s 0.22s ease both;
+}
+.hero-links {
+  display: flex; gap: 16px; position: relative; z-index: 1;
+  animation: fadeUp 0.7s 0.3s ease both;
+}
+.hero-link {
+  font-size: 11px; text-transform: uppercase;
+  letter-spacing: 0.1em; color: var(--terra-mid);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(196,149,106,0.3);
+  padding-bottom: 1px;
+  transition: color 0.2s, border-color 0.2s;
+}
+.hero-link:hover { color: #FAF0E6; border-bottom-color: rgba(196,149,106,0.6); }
+
+/* connection badge to AGORA Lab */
+.agora-badge {
+  position: absolute; top: 2rem; right: 2rem; z-index: 2;
+  display: flex; align-items: center; gap: 8px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(196,149,106,0.15);
+  border-radius: 3px; padding: 6px 12px;
+  text-decoration: none;
+  animation: fadeUp 0.7s 0.4s ease both;
+}
+.badge-bars { display: flex; align-items: flex-end; gap: 2px; height: 12px; }
+.badge-bar { border-radius: 1px; }
+.badge-label {
+  font-size: 10px; color: rgba(196,149,106,0.5);
+  letter-spacing: 0.1em; text-transform: uppercase;
+}
+
+.hero-right {
+  background: var(--sand-2);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 4rem 3rem;
+  position: relative;
+}
+/* Portrait placeholder — replace with actual photo */
+.portrait-frame {
+  width: 280px; height: 340px;
+  background: var(--sand-3);
+  border: 1px solid var(--border-2);
+  position: relative;
+  margin-bottom: 2rem;
+  overflow: hidden;
+}
+.portrait-photo {
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+}
+.portrait-placeholder {
+  width: 100%; height: 100%;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 10px;
+}
+.portrait-initials {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 4rem; font-weight: 300;
+  color: var(--terra-mid); font-style: italic;
+}
+.portrait-note { font-size: 11px; color: var(--text-3); letter-spacing: 0.06em; }
+.portrait-accent {
+  position: absolute; bottom: 0; left: 0;
+  width: 100%; height: 4px;
+  background: var(--terra);
+}
+
+.hero-stats {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 1px; background: var(--border);
+  border: 1px solid var(--border);
+  width: 280px;
+}
+.hero-stat {
+  background: var(--sand);
+  padding: 12px 14px;
+}
+.stat-n {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.8rem; font-weight: 300;
+  color: var(--terra); line-height: 1;
+  margin-bottom: 2px;
+}
+.stat-l { font-size: 10px; color: var(--text-3); letter-spacing: 0.04em; line-height: 1.4; }
+
+/* ─── SHARED SECTION STYLES ─── */
+section { padding: 5.5rem 4rem; }
+.inner { max-width: 1060px; margin: 0 auto; }
+.eyebrow {
+  font-size: 10px; text-transform: uppercase;
+  letter-spacing: 0.15em; color: var(--terra);
+  margin-bottom: 1rem; display: block;
+}
+.section-h {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.8rem, 3.5vw, 3rem);
+  font-weight: 300; line-height: 1.2;
+  letter-spacing: -0.01em; margin-bottom: 1.25rem;
+  color: var(--text);
+}
+.section-h em { font-style: italic; color: var(--terra); }
+.section-p { font-size: 14px; color: var(--text-2); line-height: 1.85; max-width: 600px; }
+.div { border: none; border-top: 1px solid var(--border); margin: 2.5rem 0; }
+
+/* ─── ABOUT ─── */
+.about-section { background: white; }
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem; align-items: start;
+  margin-top: 2.5rem;
+}
+.about-text { }
+.about-lead {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.3rem; font-weight: 400; font-style: italic;
+  color: var(--text); line-height: 1.7;
+  margin-bottom: 1.5rem;
+  border-left: 2px solid var(--terra);
+  padding-left: 1.25rem;
+}
+.about-body { font-size: 14px; color: var(--text-2); line-height: 1.9; }
+.about-body p { margin-bottom: 1rem; }
+.about-body p:last-child { margin-bottom: 0; }
+
+.about-sidebar { }
+.sidebar-block {
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.sidebar-block:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+.sidebar-title {
+  font-size: 10px; text-transform: uppercase;
+  letter-spacing: 0.13em; color: var(--terra);
+  margin-bottom: 0.75rem;
+}
+.sidebar-item { font-size: 13px; color: var(--text-2); margin-bottom: 5px; padding-left: 12px; position: relative; }
+.sidebar-item::before { content: ''; position: absolute; left: 0; top: 8px; width: 4px; height: 4px; border-radius: 50%; background: var(--terra-mid); }
+.sidebar-link { color: var(--terra); text-decoration: none; font-size: 12px; letter-spacing: 0.04em; }
+.sidebar-link:hover { color: var(--terra-deep); }
+
+/* ─── RESEARCH ─── */
+.research-section { background: var(--sand); }
+.research-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5px; background: var(--border-2);
+  border: 1px solid var(--border-2);
+  margin-top: 2.5rem;
+}
+.research-card {
+  background: var(--sand);
+  padding: 2rem 1.75rem;
+  transition: background 0.2s;
+}
+.research-card:hover { background: white; }
+.rc-letter {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 3rem; font-weight: 300; font-style: italic;
+  color: var(--terra-mid); line-height: 1;
+  margin-bottom: 0.75rem; display: block;
+}
+.rc-title { font-size: 14px; font-weight: 500; color: var(--text); margin-bottom: 8px; line-height: 1.4; }
+.rc-desc { font-size: 12px; color: var(--text-2); line-height: 1.7; margin-bottom: 1rem; }
+.rc-tags { display: flex; flex-wrap: wrap; gap: 4px; }
+.rc-tag {
+  font-size: 10px; padding: 2px 7px;
+  background: var(--sand-3); color: var(--text-2);
+  border-radius: 2px; letter-spacing: 0.02em;
+}
+
+/* ─── PUBLICATIONS ─── */
+.pubs-section { background: white; }
+.pub-list { margin-top: 2rem; }
+.pub-item {
+  display: flex; gap: 1.5rem;
+  padding: 1.25rem 0;
+  border-bottom: 1px solid var(--border);
+  align-items: flex-start;
+}
+.pub-item:last-child { border-bottom: none; }
+.pub-year {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem; color: var(--terra-mid);
+  min-width: 44px; padding-top: 1px; flex-shrink: 0;
+}
+.pub-body { flex: 1; }
+.pub-title { font-size: 14px; font-weight: 500; color: var(--text); margin-bottom: 3px; line-height: 1.5; }
+.pub-meta { font-size: 12px; color: var(--text-3); line-height: 1.5; }
+.pub-type {
+  display: inline-block; font-size: 9px;
+  text-transform: uppercase; letter-spacing: 0.08em;
+  padding: 2px 7px; border-radius: 2px;
+  margin-left: 8px; vertical-align: middle;
+}
+.type-journal { background: #EAF3DE; color: #27500A; }
+.type-chapter { background: var(--sand-2); color: var(--terra-deep); }
+.type-conf { background: #E3F2FD; color: #0D47A1; }
+.type-review { background: #FFF3E0; color: #E65100; }
+.pub-link {
+  font-size: 11px; color: var(--terra);
+  text-decoration: none; letter-spacing: 0.04em;
+  border-bottom: 1px solid var(--terra-mid);
+  padding-bottom: 1px;
+}
+
+/* ─── TEACHING ─── */
+.teaching-section { background: var(--sand-2); }
+.teaching-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem; margin-top: 2.5rem;
+}
+.course-card {
+  background: white; border: 1px solid var(--border-2);
+  border-radius: 2px; padding: 1.25rem 1.5rem;
+  transition: border-color 0.2s;
+}
+.course-card:hover { border-color: var(--terra); }
+.course-code { font-size: 10px; color: var(--terra); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 5px; }
+.course-name { font-size: 14px; font-weight: 500; color: var(--text); margin-bottom: 5px; line-height: 1.35; }
+.course-level { font-size: 12px; color: var(--text-3); }
+
+/* ─── CV / TIMELINE ─── */
+.cv-section { background: var(--terra-dk); }
+.cv-section .section-h { color: #FAF0E6; }
+.cv-section .eyebrow { color: rgba(196,149,106,0.6); }
+.cv-timeline { margin-top: 2.5rem; display: flex; flex-direction: column; gap: 0; }
+.cv-item {
+  display: grid; grid-template-columns: 100px 1fr;
+  gap: 1.5rem;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid rgba(196,149,106,0.12);
+}
+.cv-item:last-child { border-bottom: none; }
+.cv-period {
+  font-size: 11px; color: var(--terra-mid);
+  letter-spacing: 0.05em; padding-top: 2px; line-height: 1.5;
+}
+.cv-body { }
+.cv-role { font-size: 14px; font-weight: 500; color: #FAF0E6; margin-bottom: 3px; }
+.cv-place { font-size: 13px; color: var(--terra-mid); margin-bottom: 3px; }
+.cv-loc { font-size: 11px; color: rgba(196,149,106,0.45); }
+
+/* ─── AGORA BRIDGE ─── */
+.bridge-section {
+  background: var(--terra);
+  padding: 4rem;
+}
+.bridge-inner {
+  max-width: 1060px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr auto;
+  align-items: center; gap: 3rem;
+}
+.bridge-text { }
+.bridge-label {
+  font-size: 10px; text-transform: uppercase;
+  letter-spacing: 0.15em; color: rgba(255,255,255,0.5);
+  margin-bottom: 0.75rem;
+}
+.bridge-h {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2rem; font-weight: 300;
+  color: white; line-height: 1.2; margin-bottom: 0.75rem;
+}
+.bridge-p { font-size: 14px; color: rgba(255,255,255,0.7); line-height: 1.75; max-width: 480px; }
+.bridge-link {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 3px; padding: 14px 22px;
+  text-decoration: none; flex-shrink: 0;
+  transition: background 0.2s;
+}
+.bridge-link:hover { background: rgba(255,255,255,0.18); }
+.bridge-link-bars { display: flex; align-items: flex-end; gap: 2px; height: 16px; }
+.bridge-link-bar { border-radius: 1px; }
+.bridge-link-text {
+  font-size: 12px; font-weight: 500;
+  color: white; letter-spacing: 0.06em; text-transform: uppercase;
+}
+
+/* ─── CONTACT ─── */
+.contact-section { background: white; }
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1px; background: var(--border);
+  border: 1px solid var(--border-2);
+  margin-top: 2.5rem;
+}
+.contact-card {
+  background: white; padding: 1.75rem 1.5rem;
+  transition: background 0.2s;
+}
+.contact-card:hover { background: var(--sand); }
+.contact-platform {
+  font-size: 10px; text-transform: uppercase;
+  letter-spacing: 0.12em; color: var(--terra);
+  margin-bottom: 8px;
+}
+.contact-value {
+  font-size: 13px; color: var(--text);
+  margin-bottom: 5px; word-break: break-all;
+}
+.contact-note { font-size: 11px; color: var(--text-3); line-height: 1.5; }
+.contact-action {
+  display: inline-block; margin-top: 10px;
+  font-size: 11px; color: var(--terra);
+  text-decoration: none; letter-spacing: 0.05em;
+  border-bottom: 1px solid var(--terra-mid);
+  padding-bottom: 1px;
+}
+
+/* ─── FOOTER ─── */
+footer {
+  background: var(--terra-dk);
+  padding: 2.5rem 4rem;
+  display: flex; align-items: center;
+  justify-content: space-between; flex-wrap: wrap; gap: 1rem;
+}
+.footer-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 15px; color: rgba(196,149,106,0.5);
+  letter-spacing: 0.06em;
+}
+.footer-links { display: flex; gap: 20px; }
+.footer-link {
+  font-size: 11px; color: rgba(196,149,106,0.3);
+  text-decoration: none; letter-spacing: 0.04em;
+  transition: color 0.2s;
+}
+.footer-link:hover { color: rgba(196,149,106,0.7); }
+.footer-copy { font-size: 10px; color: rgba(196,149,106,0.2); }
+
+/* ─── ANIMATIONS ─── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 820px) {
+  .hero { grid-template-columns: 1fr; }
+  .hero-right { display: none; }
+  .hero-left { min-height: 100vh; padding: 3rem 2rem 4rem; }
+  .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .bridge-inner { grid-template-columns: 1fr; }
+  nav { padding: 0 1.5rem; }
+  .nav-links { display: none; }
+  section { padding: 4rem 1.5rem; }
+  footer { padding: 2rem 1.5rem; flex-direction: column; }
+  .cv-item { grid-template-columns: 1fr; gap: 4px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-mark" href="#home" title="Home">
+    <span style="height:8px;"></span>
+    <span style="height:11px;"></span>
+    <span style="height:15px;"></span>
+    <span style="height:9px; opacity:0.5;"></span>
+  </a>
+  <a class="nav-name" href="#home">Sara Haddou Amar</a>
+  <div class="nav-links">
+    <a class="nav-link" href="#about">About</a>
+    <a class="nav-link" href="#research">Research</a>
+    <a class="nav-link" href="#publications">Publications</a>
+    <a class="nav-link" href="#teaching">Teaching</a>
+    <a class="nav-link" href="#cv">CV</a>
+    <a class="nav-cta" href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-left">
+    <div class="hero-bg-lines"></div>
+
+    <!-- Subtle link to AGORA Lab — visible but not prominent -->
+    <a class="agora-badge" href="https://agora-lab.com" target="_blank">
+      <div class="badge-bars">
+        <div class="badge-bar" style="width:2px;height:5px;background:#8B5E3C;"></div>
+        <div class="badge-bar" style="width:2px;height:7px;background:#C4956A;"></div>
+        <div class="badge-bar" style="width:2px;height:10px;background:#FAF0E6;"></div>
+        <div class="badge-bar" style="width:2px;height:6px;background:#8B5E3C;opacity:0.5;"></div>
+      </div>
+      <span class="badge-label">AGORA Lab →</span>
+    </a>
+
+    <div class="hero-eyebrow">Industrial & Systems Engineering · BGSU</div>
+    <h1 class="hero-name">
+      Sara<br><em>Haddou Amar</em>
+    </h1>
+    <p class="hero-title">PhD · Assistant Professor · Founder, AGORA Lab</p>
+    <p class="hero-statement">
+      I study how intelligent systems reshape work, decisions, and economic life — with particular attention to the people and places most often left out of that conversation.
+    </p>
+    <div class="hero-links">
+      <a class="hero-link" href="https://orcid.org/0000-0002-8774-2642" target="_blank">ORCID</a>
+      <a class="hero-link" href="https://www.linkedin.com/in/sara-haddou-amar-6658b84b" target="_blank">LinkedIn</a>
+      <a class="hero-link" href="mailto:samar@bgsu.edu">Email</a>
+      <a class="hero-link" href="#cv">Full CV</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="portrait-frame">
+      <!-- Replace src with your actual photo path -->
+      <!-- <img class="portrait-photo" src="your-photo.jpg" alt="Sara Haddou Amar"> -->
+      <div class="portrait-placeholder">
+        <div class="portrait-initials">SHA</div>
+        <div class="portrait-note">[ Add your photo here ]</div>
+      </div>
+      <div class="portrait-accent"></div>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="stat-n">12+</div>
+        <div class="stat-l">Peer-reviewed publications</div>
+      </div>
+      <div class="hero-stat">
+        <div class="stat-n">$796K</div>
+        <div class="stat-l">In awarded funding</div>
+      </div>
+      <div class="hero-stat">
+        <div class="stat-n">6</div>
+        <div class="stat-l">Countries of active research</div>
+      </div>
+      <div class="hero-stat">
+        <div class="stat-n">8+</div>
+        <div class="stat-l">Active grant proposals</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about-section" id="about">
+  <div class="inner">
+    <span class="eyebrow">About</span>
+    <h2 class="section-h">Operations research<br>for the <em>real world.</em></h2>
+    <div class="about-grid">
+      <div class="about-text">
+        <p class="about-lead">
+          My research sits at the intersection of operations management, manufacturing systems, human-machine collaboration, and economic development.
+        </p>
+        <div class="about-body">
+          <p>I am an Assistant Professor of Industrial and Logistics Engineering at Bowling Green State University, where I also serve as Program Coordinator for Systems Engineering. I am the founder and principal investigator of AGORA Lab — the Applied Global Operations Research & Analytics Laboratory.</p>
+          <p>I examine how technology adoption, particularly AI and digital tools, reshapes operations, labor, and organizational outcomes across a wide range of contexts: from advanced manufacturing in Northwest Ohio to smallholder cooperatives, SMEs, and emerging trade systems across the Global South.</p>
+          <p>My methodological home is operations research and management science — optimization, MCDM, field experiments, facility layout, and logistics system design. I am committed to research that is applied, global, and honest about the communities it studies.</p>
+          <p>Before joining BGSU, I was Head of the Industrial Management Department at Liwa College (Emirates College of Technology) in Abu Dhabi. I hold a PhD in Industrial and Logistics Engineering from Ibn Tofail University, Morocco.</p>
+        </div>
+      </div>
+      <div class="about-sidebar">
+        <div class="sidebar-block">
+          <div class="sidebar-title">Research interests</div>
+          <div class="sidebar-item">Operations management & manufacturing systems</div>
+          <div class="sidebar-item">Human–AI decision systems (Industry 5.0)</div>
+          <div class="sidebar-item">Multi-criteria decision analysis (MCDM)</div>
+          <div class="sidebar-item">Facility layout & logistics optimization</div>
+          <div class="sidebar-item">SME operations in emerging economies</div>
+          <div class="sidebar-item">Digital trade & development economics</div>
+          <div class="sidebar-item">Circular & urban logistics</div>
+        </div>
+        <div class="sidebar-block">
+          <div class="sidebar-title">Education</div>
+          <div class="sidebar-item">PhD, Industrial & Logistics Engineering — Ibn Tofail University</div>
+          <div class="sidebar-item">MEng, Logistics & Transport Engineering — ENSA Tetouan</div>
+          <div class="sidebar-item">CPGE (Mathematics, Physics & Engineering) — Rabat</div>
+          <div class="sidebar-item">Executive Education, Supply Chain & AI — Yale SOM, 2026</div>
+        </div>
+        <div class="sidebar-block">
+          <div class="sidebar-title">Languages</div>
+          <div class="sidebar-item">Arabic — native</div>
+          <div class="sidebar-item">French — native</div>
+          <div class="sidebar-item">English — professional proficiency</div>
+        </div>
+        <div class="sidebar-block">
+          <div class="sidebar-title">Memberships</div>
+          <div class="sidebar-item">IISE · INFORMS · IEEE · MCDM Society</div>
+          <div class="sidebar-item">UNESCO Roster of Experts</div>
+          <div class="sidebar-item">International Science Council Global Roster</div>
+          <div class="sidebar-item">African Academy of Sciences · OWSD</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESEARCH -->
+<section class="research-section" id="research">
+  <div class="inner">
+    <span class="eyebrow">Research</span>
+    <h2 class="section-h">Four pillars, <em>one question.</em></h2>
+    <p class="section-p">All my research traces back to a single animating question: when intelligent systems enter a workplace or economy, who gains decision-making power — and who loses it? The four pillars below represent the sustained lines of inquiry through which I pursue that question.</p>
+    <div class="research-grid">
+      <div class="research-card">
+        <span class="rc-letter">A</span>
+        <p class="rc-title">Applied human–AI decision systems</p>
+        <p class="rc-desc">Studying how workers and managers make better operational decisions when AI is a partner — especially in high-mix, low-volume manufacturing environments where data is scarce.</p>
+        <div class="rc-tags">
+          <span class="rc-tag">NSF GOALI</span><span class="rc-tag">HMLV manufacturing</span><span class="rc-tag">Industry 5.0</span>
+        </div>
+      </div>
+      <div class="research-card">
+        <span class="rc-letter">G</span>
+        <p class="rc-title">Global South operations & cooperative management</p>
+        <p class="rc-desc">What does technology adoption look like inside artisanal cooperatives, smallholder operations, and platform sellers in resource-constrained economies? How do advanced methods transfer across scales?</p>
+        <div class="rc-tags">
+          <span class="rc-tag">Agency Fund</span><span class="rc-tag">J-PAL MIT</span><span class="rc-tag">Schmidt Foundation</span>
+        </div>
+      </div>
+      <div class="research-card">
+        <span class="rc-letter">O</span>
+        <p class="rc-title">Operations research & manufacturing systems</p>
+        <p class="rc-desc">Designing and optimizing industrial systems — facility layouts, logistics networks, recycling operations, production planning — under real-world constraints.</p>
+        <div class="rc-tags">
+          <span class="rc-tag">NOIC</span><span class="rc-tag">Facility layout</span><span class="rc-tag">MCDM</span><span class="rc-tag">Optimization</span>
+        </div>
+      </div>
+      <div class="research-card">
+        <span class="rc-letter">R</span>
+        <p class="rc-title">Regional development & trade management</p>
+        <p class="rc-desc">How digital infrastructure changes physical trade flows, labor markets, and economic agency — and what management frameworks help SMEs capture that value in emerging economies.</p>
+        <div class="rc-tags">
+          <span class="rc-tag">Hinrich Foundation</span><span class="rc-tag">AfCFTA</span><span class="rc-tag">Tohoku 2028</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PUBLICATIONS -->
+<section class="pubs-section" id="publications">
+  <div class="inner">
+    <span class="eyebrow">Selected publications</span>
+    <h2 class="section-h">Written work.</h2>
+    <p class="section-p">A selection of peer-reviewed articles, book chapters, and conference contributions. For a complete list see my <a href="https://orcid.org/0000-0002-8774-2642" style="color:var(--terra);">ORCID profile</a>.</p>
+    <div class="pub-list">
+
+      <div class="pub-item">
+        <div class="pub-year">2026</div>
+        <div class="pub-body">
+          <p class="pub-title">The Power of Generative AI for Innovative Assessment Design in STEM Education Programs <span class="pub-type type-chapter">Book chapter</span></p>
+          <p class="pub-meta">Amar, S., Benchouk, K. · In: Lahby, M. et al. (eds) <em>Generative AI in Higher Education Assessment</em>. Springer · doi:10.1007/978-3-032-01638-6_10</p>
+        </div>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-year">2025</div>
+        <div class="pub-body">
+          <p class="pub-title">A Comprehensive Review of Human Factors and Ergonomics in Industry 5.0 <span class="pub-type type-journal">Journal</span></p>
+          <p class="pub-meta">Haddou Amar, S., Mouhib, H., Elrhanimi, S., El Abbadi, L. · <em>Engineering Proceedings</em>, 112, 61 · doi:10.3390/engproc2025112061</p>
+        </div>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-year">2025</div>
+        <div class="pub-body">
+          <p class="pub-title">Maximizing Efficiency and Collaboration: Comparing Robots and Cobots in the Automotive Industry — A Multi-Criteria Evaluation <span class="pub-type type-journal">Journal</span></p>
+          <p class="pub-meta">Haddou Amar, S., Mouhib, H., Elrhanimi, S., El Abbadi, L. · <em>International Journal of Industrial Engineering and Management</em> · In press</p>
+        </div>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-year">2024</div>
+        <div class="pub-body">
+          <p class="pub-title">The Role of Generative AI in Higher Education: Fostering Teamwork as a Virtual Teaching Assistant <span class="pub-type type-chapter">Book chapter</span></p>
+          <p class="pub-meta">Amar, S., Benchouk, K. · In: Lahby, M. et al. (eds) <em>General Aspects of Applying Generative AI in Higher Education</em>. Springer · doi:10.1007/978-3-031-65691-0_3</p>
+        </div>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-year">2022</div>
+        <div class="pub-body">
+          <p class="pub-title">The Challenges of Supply Chain Digitalization: Understanding Emotional Factors in Technology Adoption <span class="pub-type type-conf">Conference</span></p>
+          <p class="pub-meta">Amar, S. · <em>IEEE ICECOCS 2022</em>, Fez · doi:10.1109/ICECOCS55148.2022.9983197</p>
+        </div>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-year">2022</div>
+        <div class="pub-body">
+          <p class="pub-title">The Role of Emotional Intelligence in Industrial Multicriteria Decision Making <span class="pub-type type-chapter">Book chapter</span></p>
+          <p class="pub-meta">Amar, S., Arrhioui, K. · In: Hamdan, A. et al. (eds) <em>Future of Organizations and Work After the 4th Industrial Revolution</em>. Springer · doi:10.1007/978-3-030-99000-8_2</p>
+        </div>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-year">2017</div>
+        <div class="pub-body">
+          <p class="pub-title">Interactive Facility Layout Problem: A Bi-objective Design <span class="pub-type type-journal">Journal</span></p>
+          <p class="pub-meta">Haddou Amar, S. · <em>International Journal on Interactive Design and Manufacturing (IJIDeM)</em>. Springer France · doi:10.1007/s12008-017-0387-y</p>
+        </div>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-year">In review</div>
+        <div class="pub-body">
+          <p class="pub-title">Human-Centric Perspectives in Supply Chain Analysis: Integrating Human Factors into Operations <span class="pub-type type-review">Under review</span></p>
+          <p class="pub-meta">Amar, S. · <em>Human Systems Management</em></p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- TEACHING -->
+<section class="teaching-section" id="teaching">
+  <div class="inner">
+    <span class="eyebrow">Teaching</span>
+    <h2 class="section-h">Courses & <em>pedagogy.</em></h2>
+    <p class="section-p">I teach at the undergraduate and graduate level in industrial engineering, logistics, and systems engineering. My teaching integrates real-world case studies, industry projects, and generative AI tools for active learning.</p>
+    <div class="teaching-grid">
+      <div class="course-card">
+        <div class="course-code">BGSU · Undergraduate</div>
+        <div class="course-name">Introduction to Industrial & Systems Engineering</div>
+        <div class="course-level">Systems thinking, process design, optimization fundamentals</div>
+      </div>
+      <div class="course-card">
+        <div class="course-code">BGSU · Undergraduate</div>
+        <div class="course-name">Logistics & Supply Chain Management</div>
+        <div class="course-level">Network design, inventory, transportation, digital tools</div>
+      </div>
+      <div class="course-card">
+        <div class="course-code">BGSU · Graduate</div>
+        <div class="course-name">Advanced Operations Research</div>
+        <div class="course-level">Linear programming, metaheuristics, multi-objective optimization</div>
+      </div>
+      <div class="course-card">
+        <div class="course-code">BGSU · Graduate</div>
+        <div class="course-name">Human Factors in Engineering Systems</div>
+        <div class="course-level">Ergonomics, human-machine interaction, Industry 5.0</div>
+      </div>
+      <div class="course-card">
+        <div class="course-code">BGSU · Undergraduate</div>
+        <div class="course-name">Facility Layout & Planning</div>
+        <div class="course-level">Quantitative layout design, location analysis, simulation</div>
+      </div>
+      <div class="course-card">
+        <div class="course-code">Systems Engineering</div>
+        <div class="course-name">Program Coordinator</div>
+        <div class="course-level">Curriculum development, faculty liaison, student advising</div>
+      </div>
+    </div>
+    <div style="margin-top:2rem;">
+      <p class="section-p" style="font-style:italic; color:var(--text-3);">
+        I also contribute to STEM outreach through the American Heart Association's STEM Goes Red workshop series (University of Toledo, 2024–ongoing) and the KEEN Engineering Unleashed Program for entrepreneurial mindset integration in engineering curricula.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- CV TIMELINE -->
+<section class="cv-section" id="cv">
+  <div class="inner">
+    <span class="eyebrow">Academic record</span>
+    <h2 class="section-h" style="color:#FAF0E6;">Positions & <em style="color:var(--terra-mid);">milestones.</em></h2>
+    <div class="cv-timeline">
+      <div class="cv-item">
+        <div class="cv-period">2023 – Present</div>
+        <div class="cv-body">
+          <div class="cv-role">Assistant Professor, Tenure Track</div>
+          <div class="cv-place">School of Engineering — Bowling Green State University</div>
+          <div class="cv-loc">Perrysburg, Ohio, USA · Program Coordinator, Systems Engineering · Founder, AGORA Lab</div>
+        </div>
+      </div>
+      <div class="cv-item">
+        <div class="cv-period">2020 – 2023</div>
+        <div class="cv-body">
+          <div class="cv-role">Assistant Professor & Head, Industrial Management Dept.</div>
+          <div class="cv-place">Liwa College (Emirates College of Technology)</div>
+          <div class="cv-loc">Abu Dhabi, UAE · UAE Research Grant ($32K) · Distinguished Teaching Recognition 2023</div>
+        </div>
+      </div>
+      <div class="cv-item">
+        <div class="cv-period">2019 – 2020</div>
+        <div class="cv-body">
+          <div class="cv-role">Visiting Research Fellow</div>
+          <div class="cv-place">United Arab Emirates University</div>
+          <div class="cv-loc">Al Ain, UAE</div>
+        </div>
+      </div>
+      <div class="cv-item">
+        <div class="cv-period">2016 – 2019</div>
+        <div class="cv-body">
+          <div class="cv-role">Adjunct Professor</div>
+          <div class="cv-place">National School of Applied Sciences (ENSA)</div>
+          <div class="cv-loc">Kenitra, Morocco</div>
+        </div>
+      </div>
+      <div class="cv-item">
+        <div class="cv-period">2018</div>
+        <div class="cv-body">
+          <div class="cv-role">PhD, Industrial and Logistics Engineering</div>
+          <div class="cv-place">Ibn Tofail University</div>
+          <div class="cv-loc">Kenitra, Morocco · Dissertation: Facility location and layout optimization under multi-objective frameworks</div>
+        </div>
+      </div>
+      <div class="cv-item">
+        <div class="cv-period">Fellowships</div>
+        <div class="cv-body">
+          <div class="cv-role">Selected fellowships & executive education</div>
+          <div class="cv-place">Yale School of Management (2026) · Climate Change AI Summer School (2023) · Berlin Energy Transition Dialogue Fellow (2019) · Magnum Leadership Program, APM Terminals/Maersk (2018) · Data Science Scholarship, Udacity/Bertelsmann (2018–19)</div>
+          <div class="cv-loc"></div>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:2.5rem;">
+      <a href="mailto:samar@bgsu.edu?subject=CV Request" style="font-size:12px;color:var(--terra-mid);text-decoration:none;border-bottom:1px solid rgba(196,149,106,0.3);padding-bottom:1px;letter-spacing:0.06em;text-transform:uppercase;">Request full CV →</a>
+    </div>
+  </div>
+</section>
+
+<!-- AGORA BRIDGE -->
+<div class="bridge-section">
+  <div class="bridge-inner">
+    <div class="bridge-text">
+      <div class="bridge-label">Research laboratory</div>
+      <h3 class="bridge-h">Explore AGORA Lab —<br>my research home.</h3>
+      <p class="bridge-p">AGORA Lab (Applied Global Operations Research & Analytics) is where I house my active research projects, field partnerships, and collaboration network. Visit the lab site to see current projects, explore the field network, or find out how to get involved.</p>
+    </div>
+    <a class="bridge-link" href="https://agora-lab.com" target="_blank">
+      <div class="bridge-link-bars">
+        <div class="bridge-link-bar" style="width:4px;height:7px;background:rgba(255,255,255,0.4);"></div>
+        <div class="bridge-link-bar" style="width:4px;height:10px;background:rgba(255,255,255,0.65);"></div>
+        <div class="bridge-link-bar" style="width:4px;height:14px;background:rgba(255,255,255,0.9);"></div>
+        <div class="bridge-link-bar" style="width:4px;height:8px;background:rgba(255,255,255,0.35);"></div>
+      </div>
+      <span class="bridge-link-text">Visit AGORA Lab</span>
+    </a>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="inner">
+    <span class="eyebrow">Contact</span>
+    <h2 class="section-h">Get in <em>touch.</em></h2>
+    <p class="section-p">I welcome inquiries from prospective students, research collaborators, industry partners, and journalists or policy professionals interested in my research areas.</p>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <div class="contact-platform">Academic email</div>
+        <div class="contact-value">samar@bgsu.edu</div>
+        <div class="contact-note">For student inquiries, collaboration proposals, and official correspondence</div>
+        <a class="contact-action" href="mailto:samar@bgsu.edu">Send email →</a>
+      </div>
+      <div class="contact-card">
+        <div class="contact-platform">LinkedIn</div>
+        <div class="contact-value">Sara Haddou Amar</div>
+        <div class="contact-note">Professional network, conference announcements, research updates</div>
+        <a class="contact-action" href="https://www.linkedin.com/in/sara-haddou-amar-6658b84b" target="_blank">Connect →</a>
+      </div>
+      <div class="contact-card">
+        <div class="contact-platform">ORCID</div>
+        <div class="contact-value">0000-0002-8774-2642</div>
+        <div class="contact-note">Complete publication record, verified research output</div>
+        <a class="contact-action" href="https://orcid.org/0000-0002-8774-2642" target="_blank">View profile →</a>
+      </div>
+      <div class="contact-card">
+        <div class="contact-platform">AGORA Lab</div>
+        <div class="contact-value">agora-lab.com</div>
+        <div class="contact-note">Research projects, field network, collaboration & student opportunities</div>
+        <a class="contact-action" href="https://agora-lab.com" target="_blank">Visit lab →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-name">Sara Haddou Amar, PhD</div>
+  <div class="footer-links">
+    <a class="footer-link" href="https://agora-lab.com" target="_blank">AGORA Lab</a>
+    <a class="footer-link" href="https://orcid.org/0000-0002-8774-2642" target="_blank">ORCID</a>
+    <a class="footer-link" href="https://www.linkedin.com/in/sara-haddou-amar-6658b84b" target="_blank">LinkedIn</a>
+    <a class="footer-link" href="mailto:samar@bgsu.edu">Email</a>
+  </div>
+  <div class="footer-copy">Bowling Green State University · Perrysburg, Ohio</div>
+</footer>
+
+</body>
+</html>
